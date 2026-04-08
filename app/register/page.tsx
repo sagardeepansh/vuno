@@ -97,7 +97,7 @@ export default function SignupPage() {
               onChange={(e) => setForm({ ...form, password: e.target.value })}
             />
 
-            <button className="btn-primary">
+            <button className="btn-primary cursor-pointer">
               Register & Send OTP
             </button>
           </form>
@@ -112,14 +112,14 @@ export default function SignupPage() {
               onChange={(e) => setOtp(e.target.value)}
             />
 
-            <button className="btn-primary">
+            <button className="btn-primary cursor-pointer">
               Verify OTP
             </button>
 
             <button
               type="button"
               onClick={() => setStep("form")}
-              className="text-sm text-gray-500 underline"
+              className="text-sm text-gray-500 underline text-center"
             >
               Change Email
             </button>

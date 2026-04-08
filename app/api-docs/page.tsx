@@ -59,7 +59,7 @@ export default function PublicApiDocs() {
   };
 </script>
 
-<script src="https://vuno-backend.vercel.app/embed/chatbot.js"></script>`}
+<script src="https://vuno-backend.vercel.app/embed/chatbot.min.js"></script>`}
             </div>
           </div>
 
