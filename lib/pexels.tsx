@@ -1,0 +1,25 @@
+export async function searchPexels(query: string) {
+  try {
+    const randomPage = Math.floor(Math.random() * 50) + 1;
+    const res = await fetch(
+      `https://api.pexels.com/v1/search?query=${encodeURIComponent(query)}&page=${randomPage}&per_page=1&orientation=landscape`,
+      {
+        headers: {
+          Authorization: process.env.PEXELS_API_KEY || "gRYKFUFDesBCEw1QKehbPUJ3Z95drs7PQGwOo7KmOLbmnKDGyeJkUx7I",
+        },
+        // Optional: caching strategy
+        next: { revalidate: 120 }, // ISR cache (1 min)
+      }
+    );
+
+    if (!res.ok) {
+      throw new Error(`Pexels API error: ${res.status}`);
+    }
+
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error("Pexels fetch error:", error);
+    throw error;
+  }
+}
