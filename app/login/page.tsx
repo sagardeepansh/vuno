@@ -49,7 +49,7 @@ export default function LoginPage() {
       
       {/* Background Image */}
       <div className="absolute inset-0">
-        <BgImage bgimage={bgimage} />
+        <BgImage bgimage={bgimage ?? undefined} />
         {/* <Image
           src={bgimage || "/assets/bg.jpg"}
           alt="bg"

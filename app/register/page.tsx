@@ -59,7 +59,7 @@ export default function SignupPage() {
       
       {/* Background */}
       <div className="absolute inset-0">
-        <BgImage bgimage={bgimage} />
+        <BgImage bgimage={bgimage ?? undefined} />
       </div>
 
       {/* Card */}
