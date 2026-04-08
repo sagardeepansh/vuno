@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Vuno — AI Chatbot Frontend
 
-## Getting Started
+Vuno is a modern AI chatbot frontend built with Next.js and Tailwind CSS. It provides a clean and responsive interface for interacting with an AI backend (RAG-based system) to query documents and get intelligent answers.
 
-First, run the development server:
+---
+
+## Features
+
+- Real-time AI chatbot interface
+- Built with Next.js (App Router)
+- Clean UI using Tailwind CSS
+- Seamless backend API integration
+- Context-aware AI responses (RAG)
+- Fully responsive (mobile + desktop)
+- Loading states & smooth UX
+
+---
+
+## Tech Stack
+
+- **Framework:** Next.js 14+
+- **Styling:** Tailwind CSS
+- **Language:** TypeScript
+- **State Management:** React Hooks
+- **API Calls:** Fetch API
+- **Image Handling:** next/image
+
+---
+
+## Installation
+
+```bash
+git clone https://github.com/sagardeepansh/vuno
+cd vuno
+npm install
+```
+
+---
+
+## Run Locally
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+App will run on:
+http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Core Components
 
-## Learn More
+- **ChatBox** → Handles chat state & layout  
+- **InputBox** → Input + send logic  
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Author
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Deepanah
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## License
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is licensed under the MIT License.
