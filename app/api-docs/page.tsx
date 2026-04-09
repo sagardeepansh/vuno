@@ -4,10 +4,12 @@ import PublicHeader from "@/components/PublicHeader";
 
 export default function PublicApiDocs() {
   return (
-    <div className="min-h-screen bg-gray-100">
+    <>
+    <PublicHeader />
+    <div className="min-h-screen mt-9 bg-gray-100">
       
       {/* Header */}
-      <PublicHeader />
+      
 
       {/* Content */}
       <div className="flex justify-center px-4 py-10">
@@ -107,5 +109,6 @@ export default function PublicApiDocs() {
         </div>
       </div>
     </div>
+    </>
   );
 }

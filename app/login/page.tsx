@@ -49,7 +49,7 @@ export default function LoginPage() {
 
   return (
     <>
-    <div className="min-h-screen  pr-6 md:pr-16 lg:pr-24 flex items-center justify-end relative overflow-hidden">
+    <div className="min-h-screen pl-6 pr-6 md:pr-16 lg:pr-24 flex items-center justify-end relative overflow-hidden">
       
       {/* Background Image */}
       <div className="absolute inset-0">
@@ -65,7 +65,7 @@ export default function LoginPage() {
       </div>
 
       {/* Login Card */}
-      <div className="relative z-10 w-full max-w-md  bg-white backdrop-blur-xl border border-white/20 rounded-2xl shadow-xl p-7">
+      <div className="relative z-10 w-full max-w-md  bg-white backdrop-blur-xl border border-white/20 rounded-2xl shadow-xl  p-7">
 
         <h2 className="text-2xl font-bold text-black text-center mb-2">
           Vuno Login

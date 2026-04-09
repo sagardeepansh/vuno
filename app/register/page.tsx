@@ -59,7 +59,7 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="min-h-screen pr-6 md:pr-16 lg:pr-24 flex items-center justify-end relative overflow-hidden">
+    <div className="min-h-screen pr-6 pl-6 md:pr-16 lg:pr-24 flex items-center justify-end relative overflow-hidden">
       
       {/* Background */}
       <div className="absolute inset-0">
