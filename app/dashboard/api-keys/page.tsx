@@ -169,7 +169,7 @@ export default function ApiKeysPage() {
 
                     <button
                       onClick={() => deleteKey(key._id)}
-                      className="text-sm text-red-500 hover:underline"
+                      className="text-sm text-red-500 hover:underline cursor-pointer"
                     >
                       Revoke
                     </button>

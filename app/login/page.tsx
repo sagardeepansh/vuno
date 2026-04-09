@@ -9,8 +9,10 @@ import { useEffect, useState } from "react";
 
 export default function LoginPage() {
   const { login } = useAuth();
+
   const router = useRouter();
   const [bgimage, setBgImage] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const fetchimg = async () => {
     const bgimage = await searchPexels("wild");
@@ -29,6 +31,7 @@ export default function LoginPage() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
 
     try {
       await login(form);
@@ -41,6 +44,7 @@ export default function LoginPage() {
         console.error("Something went wrong");
       }
     }
+    setLoading(false);
   };
 
   return (
@@ -106,8 +110,12 @@ export default function LoginPage() {
             }
           />
 
-          <button className="w-full bg-black hover:bg-black cursor-pointer text-white py-2 rounded-lg font-medium transition">
-            Sign In
+          <button
+            type="submit"
+            className={`w-full bg-black hover:bg-black cursor-pointer text-white py-2 rounded-lg font-medium transition ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
+            disabled={loading}
+          >
+            {loading ? "Signing In..." : "Sign In"}
           </button>
         </form>
 

@@ -14,13 +14,13 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    /* --background: #0a0a0a; */
     --foreground: #ededed;
   }
 }
 
 body {
-  background: var(--background);
+  /* background: var(--background); */
   color: var(--foreground);
   font-family: "Inter", sans-serif;
   /* font-family: Arial, Helvetica, sans-serif; */
@@ -31,4 +31,51 @@ body {
 
 .btn-primary {
   @apply w-full bg-black text-white py-2 rounded-lg font-medium hover:bg-black/90;
+}
+
+.shine-text {
+  background: linear-gradient(
+    45deg,
+    #000 0%,
+    #000 40%,
+    #fff 50%,
+    #000 60%,
+    #000 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 3s linear infinite;
+}
+
+@keyframes shine {
+  0% {
+    background-position: 200% center;
+  }
+  100% {
+    background-position: -200% center;
+  }
+}
+
+.gradient-section {
+    background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+}
+.text-fg {
+    --tw-text-opacity: 1;
+    color: rgb(37 42 51 / var(--tw-text-opacity, 1));
+}
+.gradient-hero {
+    background: linear-gradient(135deg, #2c3140 0%, #3d4458 50%, #363d4d 100%);
+}
+.text-primary {
+    --tw-text-opacity: 1;
+    color: rgb(54 61 77 / var(--tw-text-opacity, 1));
+}
+.text-muted {
+    --tw-text-opacity: 1;
+    color: rgb(116 121 138 / var(--tw-text-opacity, 1));
+}
+.border-border {
+    --tw-border-opacity: 1;
+    border-color: rgb(227 229 234 / var(--tw-border-opacity, 1));
 }

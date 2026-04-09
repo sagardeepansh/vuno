@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 export default function SignupPage() {
   const router = useRouter();
   const { signup, verifyOtp } = useAuth();
-
+  const [loading, setLoading] = useState(false);
   const [bgimage, setBgImage] = useState<string | null>(null);
 
   const [step, setStep] = useState<"form" | "otp">("form");
@@ -35,23 +35,27 @@ export default function SignupPage() {
   // STEP 1: Register
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
     try {
       await signup(form); // sends OTP
       setStep("otp");
     } catch (err: any) {
       setError(err.message);
     }
+    setLoading(false);
   };
 
   // STEP 2: Verify OTP
   const handleVerifyOtp = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
     try {
       await verifyOtp({ email: form.email, otp });
       router.push("/dashboard");
     } catch (err: any) {
       setError(err.message);
     }
+    setLoading(false);
   };
 
   return (
@@ -97,7 +101,7 @@ export default function SignupPage() {
               onChange={(e) => setForm({ ...form, password: e.target.value })}
             />
 
-            <button className="btn-primary cursor-pointer">
+            <button className={`btn-primary cursor-pointer ${loading ? 'opacity-50 cursor-not-allowed' : ''}`} disabled={loading}>
               Register & Send OTP
             </button>
           </form>
@@ -112,7 +116,7 @@ export default function SignupPage() {
               onChange={(e) => setOtp(e.target.value)}
             />
 
-            <button className="btn-primary cursor-pointer">
+            <button className={`btn-primary cursor-pointer ${loading ? 'opacity-50 cursor-not-allowed' : ''}`} disabled={loading}>
               Verify OTP
             </button>
 

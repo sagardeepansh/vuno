@@ -9,7 +9,7 @@ import {
   DocumentTextIcon,
   KeyIcon,
   UserCircleIcon,
-  ShareIcon,
+  HeartIcon ,
   ChevronRightIcon,
   CodeBracketIcon,
 } from "@heroicons/react/24/outline";
@@ -19,7 +19,7 @@ import {
   DocumentTextIcon as DocumentSolid,
   KeyIcon as KeySolid,
   UserCircleIcon as UserSolid,
-  ShareIcon as ShareSolid,
+  HeartIcon as HeartSolid,
   CodeBracketSquareIcon,
 } from "@heroicons/react/24/solid";
 
@@ -64,11 +64,11 @@ const menu = [
         selectedIcon: CodeBracketSquareIcon,
       },
       {
-        label: "Social",
-        path: "/social",
-        icon: ShareIcon,
-        selectedIcon: ShareSolid,
-      },
+        label: "Support",
+        path: "/dashboard/donate",
+        icon: HeartIcon,
+        selectedIcon: HeartSolid,
+      }
     ],
   },
 ];
