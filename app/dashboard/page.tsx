@@ -14,6 +14,7 @@ import {
   Bar,
   CartesianGrid,
 } from "recharts";
+import { Bars3Icon } from "@heroicons/react/24/outline";
 
 // Mock Data (keep as is for now)
 const usageData = [
@@ -33,6 +34,7 @@ const apiKeyData = [
 ];
 
 export default function DashboardPage() {
+  const [isOpen, setIsOpen] = useState(false);
   const [summary, setSummary] = useState({
     totalRequests: 0,
     activeKeys: 0,
@@ -68,7 +70,14 @@ export default function DashboardPage() {
 
   return (
     <div className="flex h-screen bg-gray-100">
-      <Sidebar />
+
+      <button
+        onClick={() => setIsOpen(true)}
+        className="md:hidden absolute top-0 left-2 z-50 p-2 text-black border-0 rounded-lg bg-white border"
+      >
+        <Bars3Icon className="h-5 w-5" />
+      </button>
+      <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
 
       <div className="flex-1 flex flex-col">
         <Header />

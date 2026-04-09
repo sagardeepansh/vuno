@@ -2,6 +2,7 @@
 
 import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
+import { Bars3Icon } from "@heroicons/react/24/outline";
 import { useEffect, useState } from "react";
 
 type User = {
@@ -15,6 +16,7 @@ export default function AccountPage() {
   const [form, setForm] = useState<User>({ name: "", email: "", gkey: "" });
   const [editing, setEditing] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   // Fetch user
@@ -63,7 +65,13 @@ export default function AccountPage() {
 
   return (
     <div className="flex h-screen bg-gray-100">
-      <Sidebar />
+      <button
+        onClick={() => setIsOpen(true)}
+        className="md:hidden absolute top-2 left-2 z-50 p-2 text-black border-0 rounded-lg bg-white border"
+      >
+        <Bars3Icon className="h-5 w-5" />
+      </button>
+      <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
 
       <div className="flex-1 flex flex-col">
         <Header />
