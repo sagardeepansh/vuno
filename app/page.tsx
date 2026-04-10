@@ -2,7 +2,8 @@
 
 import PublicHeader from '@/components/PublicHeader';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { initChatbot } from "vuno-chatbot";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState<'upload' | 'query' | 'manage' | 'api'>('upload');
@@ -22,11 +23,15 @@ export default function Home() {
         : 'rotate(180deg)';
     }
   };
+  
+  useEffect(() => {
+    initChatbot({ apiKey: process.env.NEXT_PUBLIC_CHATBOT_API_KEY });
+  }, []);
 
   return (
     <div className="bg-white antialiased">
       {/* Navbar */}
-     <PublicHeader />
+      <PublicHeader />
 
       {/* Hero Section */}
       <section className="pt-28 pb-20 px-4 overflow-hidden">
@@ -195,7 +200,7 @@ export default function Home() {
             <h2 className="text-3xl sm:text-4xl text-black font-bold  mb-4">Integrate with a <span className="text-gradient">simple API</span></h2>
             <p className="text-muted mb-6 text-[#74798a] leading-relaxed">Use our RESTful API to upload documents and query them from any platform. SDKs available for popular languages.</p>
             <Link href="/api-docs" className="h-11 px-8  bg-black text-white rounded-md text-sm font-medium inline-flex items-center gap-2">
-              View API Docs <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+              View API Docs <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg>
             </Link>
           </div>
           <div className="bg-[#1e1e2e] rounded-2xl p-6 font-mono text-sm overflow-x-auto border border-[#2a2f3a]">
@@ -284,25 +289,25 @@ export default function Home() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             <div className="relative p-6 rounded-2xl border border-border bg-white">
               <div className="absolute -top-3 -left-3 w-8 h-8 rounded-full gradient-hero flex items-center justify-center text-white text-sm font-bold">1</div>
-              <svg className="w-7 h-7 text-primary mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+              <svg className="w-7 h-7 text-primary mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
               <h3 className="font-semibold text-fg mb-2">Upload Documents</h3>
               <p className="text-sm text-muted leading-relaxed">Drag and drop your PDFs, text files, or any supported document format.</p>
             </div>
             <div className="relative p-6 rounded-2xl border border-border bg-white">
               <div className="absolute -top-3 -left-3 w-8 h-8 rounded-full gradient-hero flex items-center justify-center text-white text-sm font-bold">2</div>
-              <svg className="w-7 h-7 text-primary mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path></svg>
+              <svg className="w-7 h-7 text-primary mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path></svg>
               <h3 className="font-semibold text-fg mb-2">AI Processing</h3>
               <p className="text-sm text-muted leading-relaxed">Documents are chunked, embedded, and stored in a vector database for semantic search.</p>
             </div>
             <div className="relative p-6 rounded-2xl border border-border bg-white">
               <div className="absolute -top-3 -left-3 w-8 h-8 rounded-full gradient-hero flex items-center justify-center text-white text-sm font-bold">3</div>
-              <svg className="w-7 h-7 text-primary mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+              <svg className="w-7 h-7 text-primary mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
               <h3 className="font-semibold text-fg mb-2">Ask Questions</h3>
               <p className="text-sm text-muted leading-relaxed">Chat naturally with your documents. Ask anything about the content.</p>
             </div>
             <div className="relative p-6 rounded-2xl border border-border bg-white">
               <div className="absolute -top-3 -left-3 w-8 h-8 rounded-full gradient-hero flex items-center justify-center text-white text-sm font-bold">4</div>
-              <svg className="w-7 h-7 text-primary mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              <svg className="w-7 h-7 text-primary mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
               <h3 className="font-semibold text-fg mb-2">Get Accurate Answers</h3>
               <p className="text-sm text-muted leading-relaxed">Receive context-grounded responses with source references from your documents.</p>
             </div>

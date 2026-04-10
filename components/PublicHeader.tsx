@@ -2,9 +2,19 @@
 
 import { useAuth } from "@/context/AuthContext";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function PublicHeader() {
-  const { user } = useAuth();
+    const { user } = useAuth();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // ⛔ Prevent hydration mismatch
+  if (!mounted) return null;
+
   const isLoggedIn = !!user;
 
   return (
@@ -74,9 +84,6 @@ export default function PublicHeader() {
                 </Link>
               </>
             )}
-            {/* <Link href="/dashboard" className="px-4 py-2 text-sm bg-black cursor-pointer text-white rounded-md font-medium">
-              Dashboard
-            </Link> */}
           </div>
         </div>
       </div>

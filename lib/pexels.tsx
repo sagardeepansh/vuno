@@ -5,7 +5,7 @@ export async function searchPexels(query: string) {
       `https://api.pexels.com/v1/search?query=${encodeURIComponent(query)}&page=${randomPage}&per_page=1&orientation=landscape`,
       {
         headers: {
-          Authorization: process.env.PEXELS_API_KEY || "gRYKFUFDesBCEw1QKehbPUJ3Z95drs7PQGwOo7KmOLbmnKDGyeJkUx7I",
+          Authorization: process.env.NEXT_PUBLIC_PEXELS_API_KEY,
         },
         // Optional: caching strategy
         next: { revalidate: 120 }, // ISR cache (1 min)

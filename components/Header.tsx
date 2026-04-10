@@ -6,6 +6,8 @@ import {
   MagnifyingGlassIcon,
   ArrowRightOnRectangleIcon,
 } from "@heroicons/react/24/outline";
+import { useEffect } from "react";
+import { initChatbot } from "vuno-chatbot";
 
 export default function Header() {
   const { logout, user, loading } = useAuth();
@@ -13,6 +15,10 @@ export default function Header() {
   if (loading) {
     return <div className="h-16 flex items-center px-4">Loading...</div>;
   }
+
+  useEffect(() => {
+    initChatbot({ apiKey: process.env.NEXT_PUBLIC_CHATBOT_API_KEY });
+  }, []);
 
   return (
     <div className="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-4 md:px-6">

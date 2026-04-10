@@ -6,6 +6,7 @@ import { searchPexels } from "@/lib/pexels";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { initChatbot } from "vuno-chatbot";
 
 export default function LoginPage() {
   const { login } = useAuth();
@@ -46,6 +47,10 @@ export default function LoginPage() {
     }
     setLoading(false);
   };
+
+   useEffect(() => {
+    initChatbot({ apiKey: process.env.NEXT_PUBLIC_CHATBOT_API_KEY });
+  }, []);
 
   return (
     <>
