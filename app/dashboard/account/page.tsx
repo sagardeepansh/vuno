@@ -9,15 +9,40 @@ type User = {
   name: string;
   email: string;
   gkey: string;
+  whitelistDomains: string[];
 };
 
 export default function AccountPage() {
-  const [user, setUser] = useState<User>({ name: "", email: "", gkey: "" });
-  const [form, setForm] = useState<User>({ name: "", email: "", gkey: "" });
+  const [user, setUser] = useState<User>({ name: "", email: "", gkey: "", whitelistDomains: [] });
+  const [form, setForm] = useState<User>({ name: "", email: "", gkey: "", whitelistDomains: [] });
   const [editing, setEditing] = useState(false);
   const [loading, setLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
+
+  const [domainInput, setDomainInput] = useState("");
+
+  const handleAddDomain = () => {
+    if (!domainInput.trim()) return;
+
+    setForm((prev) => ({
+      ...prev,
+      whitelistDomains: [
+        ...(prev.whitelistDomains || []),
+        domainInput.trim(),
+      ],
+    }));
+
+    setDomainInput("");
+  };
+
+  const handleRemoveDomain = (index) => {
+    setForm((prev) => ({
+      ...prev,
+      whitelistDomains: prev.whitelistDomains.filter((_, i) => i !== index),
+    }));
+  };
 
   // Fetch user
   const fetchUser = async () => {
@@ -118,6 +143,51 @@ export default function AccountPage() {
                 className="mt-1 w-full border border-gray-200 text-gray-600 rounded-lg px-3 py-2 text-sm disabled:bg-gray-50"
               />
             </div>
+            {/* Whitelist Domains */}
+            <div className="mb-6">
+              <label className="text-sm text-gray-600">Whitelist Domains</label>
+
+              {/* Input + Add */}
+              <div className="flex gap-2 mt-1">
+                <input
+                  type="text"
+                  placeholder="Enter domain (e.g. example.com)"
+                  disabled={!editing}
+                  value={domainInput}
+                  onChange={(e) => setDomainInput(e.target.value)}
+                  className="w-full border border-gray-200 text-gray-600 rounded-lg px-3 py-2 text-sm disabled:bg-gray-50"
+                />
+
+                <button
+                  type="button"
+                  disabled={!editing || !domainInput}
+                  onClick={handleAddDomain}
+                  className="px-4 py-2 text-sm bg-black text-white  cursor-pointer rounded-lg disabled:opacity-50"
+                >
+                  Add
+                </button>
+              </div>
+
+              {/* Domain List */}
+              <div className="flex flex-wrap gap-2 mt-3">
+                {form.whitelistDomains?.map((domain, index) => (
+                  <div
+                    key={index}
+                    className="flex items-center gap-2 bg-gray-100 text-gray-600 text-sm px-3 py-1 rounded-full"
+                  >
+                    <span>{domain}</span>
+                    {editing && (
+                      <button
+                        onClick={() => handleRemoveDomain(index)}
+                        className="text-red-500 text-xs  cursor-pointer"
+                      >
+                        ✕
+                      </button>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
 
             {/* Actions */}
             <div className="flex justify-end gap-3">
@@ -128,14 +198,14 @@ export default function AccountPage() {
                       setForm(user);
                       setEditing(false);
                     }}
-                    className="px-4 py-2 text-sm border rounded-lg"
+                    className="px-4 py-2 text-sm border rounded-lg  cursor-pointer"
                   >
                     Cancel
                   </button>
 
                   <button
                     onClick={handleSave}
-                    className="px-4 py-2 text-sm bg-black text-white rounded-lg"
+                    className="px-4 py-2 text-sm cursor-pointer bg-black text-white rounded-lg"
                   >
                     {loading ? "Saving..." : "Save"}
                   </button>
@@ -143,7 +213,7 @@ export default function AccountPage() {
               ) : (
                 <button
                   onClick={() => setEditing(true)}
-                  className="px-4 py-2 text-sm bg-black text-white rounded-lg"
+                  className="px-4 py-2 text-sm cursor-pointer bg-black text-white rounded-lg"
                 >
                   Edit
                 </button>
