@@ -37,7 +37,7 @@ export default function AccountPage() {
     setDomainInput("");
   };
 
-  const handleRemoveDomain = (index) => {
+  const handleRemoveDomain = (index: number) => {
     setForm((prev) => ({
       ...prev,
       whitelistDomains: prev.whitelistDomains.filter((_, i) => i !== index),
