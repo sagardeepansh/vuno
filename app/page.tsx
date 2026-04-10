@@ -23,9 +23,16 @@ export default function Home() {
         : 'rotate(180deg)';
     }
   };
-  
+
   useEffect(() => {
-    initChatbot({ apiKey: process.env.NEXT_PUBLIC_CHATBOT_API_KEY });
+    const apiKey = process.env.NEXT_PUBLIC_CHATBOT_API_KEY;
+
+    if (!apiKey) {
+      console.error("Missing NEXT_PUBLIC_CHATBOT_API_KEY");
+      return;
+    }
+
+    initChatbot({ apiKey });
   }, []);
 
   return (

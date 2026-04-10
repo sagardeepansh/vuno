@@ -59,13 +59,20 @@ export default function SignupPage() {
     setLoading(false);
   };
 
-   useEffect(() => {
-      initChatbot({ apiKey: process.env.NEXT_PUBLIC_CHATBOT_API_KEY });
-    }, []);
+  useEffect(() => {
+    const apiKey = process.env.NEXT_PUBLIC_CHATBOT_API_KEY;
+
+    if (!apiKey) {
+      console.error("Missing NEXT_PUBLIC_CHATBOT_API_KEY");
+      return;
+    }
+
+    initChatbot({ apiKey });
+  }, []);
 
   return (
     <div className="min-h-screen pr-6 pl-6 md:pr-16 lg:pr-24 flex items-center justify-end relative overflow-hidden">
-      
+
       {/* Background */}
       <div className="absolute inset-0">
         <BgImage bgimage={bgimage ?? undefined} />
